@@ -1,4 +1,5 @@
 from Person import Person
+from Directory import Directory
 import os
 
 # Create a list to store Person objects
@@ -7,7 +8,7 @@ person_list = []
 continue_response = ""
 
 # Create a list of menu options.
-menu_options = ["See All People", 
+menu_options = ["See Directory", 
                 "See Finished People", 
                 "See Remaining People", 
                 "Add To List", 
@@ -17,7 +18,8 @@ menu_options = ["See All People",
 
 # Create a sample person and add to the list
 person = Person("Scott", "435-849-5380", "Natalya")
-person_list.append(person)
+directory = Directory()
+Directory.append(person)
 
 def main():
     menu_choice = ""
@@ -38,7 +40,7 @@ def main():
             case "1":
                 print("ALL PEOPLE")
                 print()
-                display_people_list()
+                directory.display_directory()
                 input("Press enter to continue: ")
             case "2":
                 for person in person_list:
@@ -59,6 +61,9 @@ def main():
             case "6":
                 print()
             case "7":
+                for person in Directory:
+                    person.to_dict()
+                    
                 break
 
             case _:

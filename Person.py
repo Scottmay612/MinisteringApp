@@ -4,8 +4,8 @@ class Person():
         self.phone_number = phone_number
         self.companion = companion_name
         self.meeting_date = meeting_date
-        self.current_status = current_status
         self.meeting_time = meeting_time
+        self.current_status = current_status
         self.is_finished = is_finished
 
     @classmethod
@@ -14,7 +14,18 @@ class Person():
         phone_number = input("Phone Number: ")
         companion_name = input("Companion Name: ")
         return cls(name, phone_number, companion_name)
+    
 
+    def to_dict(self): # AI helped me learn how to do this.
+        return {
+            "name": self.name,
+            "phone_number": self.phone_number,
+            "companion": self.companion,
+            "is_finished": self.is_finished,
+            "current_status": self.current_status,
+            "meeting_date": self.meeting_date,
+            "meeting_time": self.meeting_time
+                }
 
 
     def display_info(self):
