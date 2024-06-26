@@ -1,4 +1,5 @@
 from Person import Person
+from JSON_handler import JSON_handler
 from Directory import Directory
 import os
 
@@ -17,11 +18,14 @@ menu_options = ["See Directory",
                 "Quit"]
 
 # Create a sample person and add to the list
-person = Person("Scott", "435-849-5380", "Natalya")
-directory = Directory()
-Directory.append(person)
 
 def main():
+    directory = Directory()
+
+    json_data = JSON_handler.read_file()
+    person = [Person.from_dict(person_data) for person_data in json_data]
+    for p in person:
+        directory.add_person(p)
     menu_choice = ""
     quit_option = len(menu_options)
 
@@ -55,14 +59,15 @@ def main():
                         print()
                 input("Press enter to continue: ")
             case "4":
-                add_person()
+                person = Person.from_user_input()
+                directory.add_person(person)
             case "5":
                 display_people_list()
             case "6":
-                print()
+                input()
             case "7":
-                for person in Directory:
-                    person.to_dict()
+                people_dict = [person.to_dict() for person in directory.people_list]
+                JSON_handler.write_to_file(people_dict)
                     
                 break
 

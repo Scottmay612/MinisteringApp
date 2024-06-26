@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Scott",
+        "phone_number": "435-849-5380",
+        "companion": "Natalya",
+        "is_finished": false,
+        "current_status": "",
+        "meeting_date": "TBD",
+        "meeting_time": "TBD"
+    },
+    {
+        "name": "brock",
+        "phone_number": "4358411212",
+        "companion": "allie",
+        "is_finished": false,
+        "current_status": "",
+        "meeting_date": "TBD",
+        "meeting_time": "TBD"
+    }
+]
