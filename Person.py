@@ -1,3 +1,5 @@
+from datetime import time
+
 class Person():
     def __init__(self, name, phone_number, companion_name, is_finished = False, current_status = None, meeting_date = "TBD", meeting_time = "TBD"):
         self.name = name
@@ -29,11 +31,18 @@ class Person():
 
 
     def display_info(self):
+        if isinstance(self.meeting_time, str):
+            time_str = self.meeting_time
+            date_str = self.meeting_date
+        else:
+            time_str = self.meeting_time.strftime("%I:%M %p")
+            date_str = self.meeting_date.strftime("%Y-%m-%d")
+
         print(f"Name: {self.name}")
         print(f"Phone Number: {self.phone_number}")
         print(f"Companion Name: {self.companion}")
         print(f"Meeting Date: {self.meeting_date}")
-        print(f"Meeting Time: {self.meeting_time}")
+        print(f"Meeting Time: {time_str}")
         print(f"Finished: {self.is_finished}")
         print(f"Current Status: {self.current_status}")
 
@@ -41,5 +50,6 @@ class Person():
     def from_dict(data):
         person = Person(name=data["name"], phone_number=data["phone_number"], companion_name=data["companion"],is_finished=data["is_finished"],current_status=data["current_status"],meeting_date=data["meeting_date"], meeting_time=data["meeting_time"])
         return person
+            
         
     

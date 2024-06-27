@@ -15,7 +15,7 @@ continue_response = ""
 menu_options = ["See Directory", 
                 "Add New Person", 
                 "Add New Meeting", 
-                "Add New Thursday", 
+                "Mark Meeting Finished", 
                 "Display Calendar",
                 "Mark As Finished",
                 "Quit"]
@@ -59,11 +59,17 @@ def main():
                 meeting = Meeting.from_user_input(directory)
                 calendar.add_meeting_to_thursday(meeting)
             case "4":
-                print()
+                directory.display_directory()
+                finished_choice = int(input("Which person completed their meeting? "))
+                directory.mark_meeting_finished(finished_choice)
+                directory.show_finished()
+                input()
             case "5":
                 calendar.display_calendar()
                 input()
             case "6":
+                person_meeting_delete = input("What is the name? ")
+                calendar.delete_meeting(person_meeting_delete)
                 input()
             case "7":
                 people_dict = [person.to_dict() for person in directory.people_list]

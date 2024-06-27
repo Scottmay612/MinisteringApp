@@ -12,5 +12,19 @@ class Directory():
 
     def display_directory(self):
         for index, person  in enumerate(self.people_list):
-            print(f"{index + 1}. {person.display_info()}")
+            print(f"{index + 1}. {person.name}")
+
+    def mark_meeting_finished(self, choice):
+        choice = choice - 1
+        finished_person = self.people_list[choice]
+        finished_person.is_finished = True
+
+    def show_finished(self):
+        for person in self.people_list:
+            if person.is_finished == True:
+                print(person.name)
     
+    def show_unfinished(self):
+        for person in self.people_list:
+            if person.is_finished == False:
+                print(person.name)

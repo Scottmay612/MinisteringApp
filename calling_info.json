@@ -3,10 +3,10 @@
         "name": "Scott",
         "phone_number": "1234567890",
         "companion": "Natalya May",
-        "is_finished": false,
+        "is_finished": true,
         "current_status": "",
-        "meeting_date": "2024-09-01",
-        "meeting_time": "04:29 PM"
+        "meeting_date": "TBD",
+        "meeting_time": "TBD"
     },
     {
         "name": "Natalya",
@@ -21,7 +21,7 @@
         "name": "Brock",
         "phone_number": "12345",
         "companion": "Allie",
-        "is_finished": false,
+        "is_finished": true,
         "current_status": "",
         "meeting_date": "2024-09-01",
         "meeting_time": "04:01 AM"
@@ -30,7 +30,7 @@
         "name": "Eric",
         "phone_number": "1234123",
         "companion": "Jeanette",
-        "is_finished": false,
+        "is_finished": true,
         "current_status": null,
         "meeting_date": "TBD",
         "meeting_time": "TBD"
@@ -39,7 +39,7 @@
         "name": "Patton",
         "phone_number": "39493434",
         "companion": "Laynie",
-        "is_finished": false,
+        "is_finished": true,
         "current_status": null,
         "meeting_date": "2024-09-01",
         "meeting_time": "07:15 PM"
