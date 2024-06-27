@@ -10,6 +10,7 @@ class Calendar():
         self.thursdays_list.append(thursday)
 
     def display_calendar(self):
+        self.thursdays_list.sort(key=lambda thursday: thursday.date)
         for thursday in self.thursdays_list:
             if thursday.date >= date.today():
                 thursday.display_thursday()

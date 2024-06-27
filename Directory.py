@@ -28,3 +28,14 @@ class Directory():
         for person in self.people_list:
             if person.is_finished == False:
                 print(person.name)
+    
+    def find_person(self, name):
+        for person in self.people_list:
+            if person.name == name:
+                return person
+    
+    def show_all_status(self):
+        for person in self.people_list:
+            print(f"{person.name}: ")
+            print(person.current_status)
+            print()

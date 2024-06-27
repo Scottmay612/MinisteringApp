@@ -50,6 +50,6 @@ class Person():
     def from_dict(data):
         person = Person(name=data["name"], phone_number=data["phone_number"], companion_name=data["companion"],is_finished=data["is_finished"],current_status=data["current_status"],meeting_date=data["meeting_date"], meeting_time=data["meeting_time"])
         return person
-            
+        
         
     
