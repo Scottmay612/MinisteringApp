@@ -1,5 +1,5 @@
 class Person():
-    def __init__(self, name, phone_number, companion_name, is_finished = False, current_status = "", meeting_date = "TBD", meeting_time = "TBD"):
+    def __init__(self, name, phone_number, companion_name, is_finished = False, current_status = None, meeting_date = "TBD", meeting_time = "TBD"):
         self.name = name
         self.phone_number = phone_number
         self.companion = companion_name

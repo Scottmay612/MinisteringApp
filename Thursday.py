@@ -1,10 +1,21 @@
-from Meeting import Meeting
+from datetime import date
 
 class Thursday():
-    def __init__(self, meeting_1: Meeting, meeting_2: Meeting, meeting_3: Meeting, meeting_4: Meeting) -> None:
-        self.meeting_list = [meeting_1, meeting_2, meeting_3, meeting_4]
-        self.meeting_list.sort(key=lambda meeting: meeting.time)
+    def __init__(self, date: date) -> None:
+        self.date = date
+        self.meeting_list = []
 
     def display_thursday(self):
+        self.meeting_list.sort(key=lambda meeting: meeting.time)
+        print(f"Date: {self.date}")
         for meeting in self.meeting_list:
-            print(f"{meeting.time}: {meeting.person}")
+            meeting_time_str = meeting.time.strftime("%I:%M %p")
+            print(f"    {meeting_time_str} : {meeting.person.name}")
+    
+    @staticmethod
+    def from_user_input():
+        date_str = input("What is the date? (YYYY-MM-DD) ")
+
+        date_obj = date.fromisoformat(date_str)
+
+        return Thursday(date_obj)        

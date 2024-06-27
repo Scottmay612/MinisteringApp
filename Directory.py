@@ -12,5 +12,5 @@ class Directory():
 
     def display_directory(self):
         for index, person  in enumerate(self.people_list):
-            print(f"{index + 1}. {person.name}")
+            print(f"{index + 1}. {person.display_info()}")
     

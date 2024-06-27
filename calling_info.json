@@ -1,20 +1,47 @@
 [
     {
         "name": "Scott",
-        "phone_number": "435-849-5380",
-        "companion": "Natalya",
+        "phone_number": "1234567890",
+        "companion": "Natalya May",
         "is_finished": false,
         "current_status": "",
+        "meeting_date": "2024-09-01",
+        "meeting_time": "04:29 PM"
+    },
+    {
+        "name": "Natalya",
+        "phone_number": "123423",
+        "companion": "Brent",
+        "is_finished": false,
+        "current_status": "",
+        "meeting_date": "2024-08-01",
+        "meeting_time": "04:21 PM"
+    },
+    {
+        "name": "Brock",
+        "phone_number": "12345",
+        "companion": "Allie",
+        "is_finished": false,
+        "current_status": "",
+        "meeting_date": "2024-09-01",
+        "meeting_time": "04:01 AM"
+    },
+    {
+        "name": "Eric",
+        "phone_number": "1234123",
+        "companion": "Jeanette",
+        "is_finished": false,
+        "current_status": null,
         "meeting_date": "TBD",
         "meeting_time": "TBD"
     },
     {
-        "name": "brock",
-        "phone_number": "4358411212",
-        "companion": "allie",
+        "name": "Patton",
+        "phone_number": "39493434",
+        "companion": "Laynie",
         "is_finished": false,
-        "current_status": "",
-        "meeting_date": "TBD",
-        "meeting_time": "TBD"
+        "current_status": null,
+        "meeting_date": "2024-09-01",
+        "meeting_time": "07:15 PM"
     }
 ]
