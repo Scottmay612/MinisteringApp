@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 
 class Thursday():
     def __init__(self, date: date) -> None:
@@ -7,7 +7,8 @@ class Thursday():
 
     def display_thursday(self):
         self.meeting_list.sort(key=lambda meeting: meeting.time)
-        print(f"Date: {self.date}")
+        formatted_date = datetime.strftime(self.date, "%m-%d-%Y")
+        print(f"Date: {formatted_date}")
         for meeting in self.meeting_list:
             meeting_time_str = meeting.time.strftime("%I:%M %p")
             print(f"    {meeting_time_str} : {meeting.person.name}")
@@ -16,6 +17,6 @@ class Thursday():
     def from_user_input():
         date_str = input("What is the date? (YYYY-MM-DD) ")
 
-        date_obj = date.fromisoformat(date_str)
+        date_obj = datetime.strptime(date_str, "%m-%d-%Y").date()
 
         return Thursday(date_obj)        

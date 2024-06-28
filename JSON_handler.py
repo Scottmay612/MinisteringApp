@@ -24,7 +24,7 @@ class JSON_handler:
         for item in data:
             serialized_item = item.copy()
             if 'meeting_date' in serialized_item and isinstance(serialized_item['meeting_date'], date):
-                serialized_item['meeting_date'] = serialized_item['meeting_date'].isoformat()
+                serialized_item['meeting_date'] = datetime.strftime(serialized_item['meeting_date'], "%m-%d-%Y")
             serialized_data.append(serialized_item)
         return serialized_data
     
@@ -43,6 +43,6 @@ class JSON_handler:
         return time_object
     
     def deserialize_dates(date_str):
-        date_object = datetime.strptime(date_str, "%Y-%m-%d").date()
+        date_object = datetime.strptime(date_str, "%m-%d-%Y").date()
 
         return date_object

@@ -21,18 +21,19 @@ main_menu_options = [
 
 people_manage_options = [
     "Add New Person",
+    "Show Directory",
     "Update Status",
     "Show Each Status",
     "Show Unfinished",
     "Show Finished",
     "Mark As Finished",
-    "Quit"
+    "Return to Main Menu"
 ]
 
 meeting_manage_options = [
     "Add New Meeting",
     "Delete Meeting",
-    "Quit"
+    "Return to Main Menu"
 ]
 
 # Create a sample person and add to the list
@@ -41,11 +42,7 @@ def main():
     directory = Directory()
     calendar = Calendar()
 
-    try:
-        update_all_info(directory, calendar)
-    except:
-        print("The file is empty.")
-        input()
+    update_all_info(directory, calendar)
 
     menu_choice = None
     people_manage_choice = None
@@ -87,26 +84,28 @@ def main():
                             person = Person.from_user_input()
                             directory.add_person(person)
                         case "2":
+                            print("DIRECTORY")
+                            directory.display_directory()
+                            input("Press enter to continue: ")
+                        case "3":
                             people_manage_person = input("What is the name? ")
                             new_status = input("What is the new status? ")
                             people_manage_person = directory.find_person(people_manage_person)
                             people_manage_person.current_status = new_status
-                        case "3":
+                        case "4":
                             directory.show_all_status()
                             input("Press enter to continue: ")
-                        case "4":
+                        case "5":
                             directory.show_unfinished()
                             input("Press enter to continue: ")
-                        case "5": 
+                        case "6": 
                             directory.show_finished()
                             input("Press enter to continue: ")
-                        case "6":
-                            directory.display_directory()
-                            finished_choice = int(input("Which person completed their meeting? "))
-                            directory.mark_meeting_finished(finished_choice)
+                        case "7":
+                            directory.mark_meeting_finished()
                             print("Meeting Recorded")
                             time.sleep(2)
-                        case "7":
+                        case "8":
                             break
                                        
             case "3": 
@@ -130,23 +129,12 @@ def main():
                             print("Meeting Deleted")
                             time.sleep(2)
                         case "3":
-                            break                    
+                            break               
                 
             case "4":
-
-                input()
-            case "5":
-                calendar.display_calendar()
-                input()
-            case "6":
-
-                input()
-            case "7":
                 people_dict = [person.to_dict() for person in directory.people_list]
-                JSON_handler.write_to_file(people_dict)
-                    
+                JSON_handler.write_to_file(people_dict)       
                 break
-
             case _:
                 print("Invalid option")
                 break
@@ -169,10 +157,6 @@ def update_all_info(directory: Directory, calendar: Calendar):
                     p.meeting_time, 
                     p.meeting_date))
 
-#Add Person
-
-
-# Add Meeting
 
 if __name__ == "__main__":
     main()

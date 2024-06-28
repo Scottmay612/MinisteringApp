@@ -12,7 +12,7 @@ class Calendar():
     def display_calendar(self):
         self.thursdays_list.sort(key=lambda thursday: thursday.date)
         for thursday in self.thursdays_list:
-            if thursday.date >= date.today():
+            if thursday.date >= date.today() and len(thursday.meeting_list) > 0:
                 thursday.display_thursday()
     
     def add_meeting_to_thursday(self, meeting: Meeting):

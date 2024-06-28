@@ -1,21 +1,12 @@
 [
     {
-        "name": "Scott",
-        "phone_number": "1234567890",
-        "companion": "Natalya May",
-        "is_finished": true,
-        "current_status": "He is doing his ministering",
+        "name": "Brent",
+        "phone_number": "04504095045",
+        "companion": "Jelly",
+        "is_finished": false,
+        "current_status": null,
         "meeting_date": "TBD",
         "meeting_time": "TBD"
-    },
-    {
-        "name": "Natalya",
-        "phone_number": "123423",
-        "companion": "Brent",
-        "is_finished": true,
-        "current_status": "She isn't doing it",
-        "meeting_date": "2024-08-01",
-        "meeting_time": "04:21 PM"
     },
     {
         "name": "Brock",
@@ -32,8 +23,17 @@
         "companion": "Jeanette",
         "is_finished": true,
         "current_status": "TBD",
-        "meeting_date": "2024-06-28",
-        "meeting_time": "04:32 PM"
+        "meeting_date": "04-20-2030",
+        "meeting_time": "01:32 PM"
+    },
+    {
+        "name": "Natalya",
+        "phone_number": "123423",
+        "companion": "Brent",
+        "is_finished": true,
+        "current_status": "She isn't doing it",
+        "meeting_date": "08-01-2024",
+        "meeting_time": "04:21 PM"
     },
     {
         "name": "Patton",
@@ -41,7 +41,16 @@
         "companion": "Laynie",
         "is_finished": true,
         "current_status": "TBD",
-        "meeting_date": "2024-09-01",
+        "meeting_date": "09-01-2024",
         "meeting_time": "07:15 PM"
+    },
+    {
+        "name": "Scott",
+        "phone_number": "1234567890",
+        "companion": "Natalya May",
+        "is_finished": true,
+        "current_status": "He is doing his ministering",
+        "meeting_date": "TBD",
+        "meeting_time": "TBD"
     }
 ]
