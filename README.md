@@ -6,7 +6,7 @@ In my church, I am a secretary who sets up meetings between one of our leaders a
 
 I used ChatGPT to help me learn any new syntax needed build my program. Any code that I got from ChatGPT is labeled with comments in the program itself.
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/O5Pwdz3cGzQ)
 
 # Development Environment
 

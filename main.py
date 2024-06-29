@@ -9,8 +9,6 @@ import os
 # Create a list to store Person objects.
 person_list = []
 
-continue_response = ""
-
 # Create a list of main menu options.
 main_menu_options = [
     "Display Calendar",
