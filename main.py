@@ -6,22 +6,24 @@ from Calendar import Calendar
 import time
 import os
 
-# Create a list to store Person objects
+# Create a list to store Person objects.
 person_list = []
 
 continue_response = ""
 
-# Create a list of menu options.
+# Create a list of main menu options.
 main_menu_options = [
     "Display Calendar",
     "Manage People",
     "Manage Meetings",
     "Quit"
-    ]
+]
 
+# Create a list of options for managing people.
 people_manage_options = [
     "Add New Person",
     "Show Directory",
+    "Show Companionships",
     "Update Status",
     "Show Each Status",
     "Show Unfinished",
@@ -30,24 +32,29 @@ people_manage_options = [
     "Return to Main Menu"
 ]
 
+# Create a list of options for managing meetings.
 meeting_manage_options = [
     "Add New Meeting",
     "Delete Meeting",
     "Return to Main Menu"
 ]
 
-# Create a sample person and add to the list
-
+# Main function to drive the program.
 def main():
-    directory = Directory()
-    calendar = Calendar()
+    directory = Directory()  # Create an instance of Directory.
+    calendar = Calendar()    # Create an instance of Calendar.
 
-    update_all_info(directory, calendar)
+    # Update directory and calendar with existing data from JSON.
+    try:
+        update_all_info(directory, calendar)
+    except:
+        print("The file is empty.")
 
     menu_choice = None
     people_manage_choice = None
     meeting_manage_choice = None
 
+    # Get the quit options for the menus.
     main_quit_option = len(main_menu_options)
     people_quit_option = len(people_manage_options)
     meeting_quit_option = len(meeting_manage_options)
@@ -56,15 +63,17 @@ def main():
         # Clear the terminal.
         os.system("cls")
 
-        # Display menu options.
-        print("What would you like to do?")
+        # Display the main menu options.
+        print("MAIN MENU")
         display_menu(main_menu_options)
 
+        # Get user choice for main menu.
         menu_choice = input("Pick a number: ")
         os.system("cls")
 
         match(menu_choice):
             case "1":
+                # Display the calendar.
                 print("CALENDAR")
                 print()
                 calendar.display_calendar()
@@ -81,31 +90,55 @@ def main():
                         
                     match(people_manage_choice):
                         case "1":
+                            # Add a new person to the directory.
                             person = Person.from_user_input()
                             directory.add_person(person)
+
                         case "2":
+                            # Display the directory.
                             print("DIRECTORY")
                             directory.display_directory()
                             input("Press enter to continue: ")
+
                         case "3":
+                            # Show companionships.
+                            print("COMPANIONSHIPS")
+                            directory.show_companionships()
+                            input("Press enter to continue: ")
+
+                        case "4":
+                            # Update the status of a person.
                             people_manage_person = input("What is the name? ")
                             new_status = input("What is the new status? ")
                             people_manage_person = directory.find_person(people_manage_person)
                             people_manage_person.current_status = new_status
-                        case "4":
+                            
+                        case "5":
+                            # Show all statuses.
+                            print("ALL STATUSES")
                             directory.show_all_status()
                             input("Press enter to continue: ")
-                        case "5":
+
+                        case "6":
+                            # Show unfinished tasks.
+                            print("UNFINISHED")
                             directory.show_unfinished()
                             input("Press enter to continue: ")
-                        case "6": 
+
+                        case "7": 
+                            # Show finished tasks.
+                            print("FINISHED")
                             directory.show_finished()
                             input("Press enter to continue: ")
-                        case "7":
+
+                        case "8":
+                            # Mark a meeting as finished.
                             directory.mark_meeting_finished()
                             print("Meeting Recorded")
                             time.sleep(2)
-                        case "8":
+
+                        case "9":
+                            # Return to main menu.
                             break
                                        
             case "3": 
@@ -113,50 +146,72 @@ def main():
                     os.system("cls")
                         
                     print("MEETING MANAGEMENT")
-                    print("What would you like to do?")
                     display_menu(meeting_manage_options)
                     meeting_manage_choice = input("Select a number: ")
                     os.system("cls")
+
                     match(meeting_manage_choice):
                         case "1":
+                            # Add a new meeting.
                             meeting = Meeting.from_user_input(directory)
                             calendar.add_meeting_to_thursday(meeting)
                             print("Meeting Added")
-                            time.sleep(2)
+
+                            # Allow the user to read the confirmation message.
+                            time.sleep(1)
+
                         case "2":
+                            # Delete a meeting.
                             person_meeting_delete = input("What is the name? ")
                             calendar.delete_meeting(person_meeting_delete)
                             print("Meeting Deleted")
-                            time.sleep(2)
+
+                            # Allow the user to read the confirmation message.
+                            time.sleep(1)
+
                         case "3":
+                            # Return to main menu.
                             break               
                 
             case "4":
+                # Save the current state and quit the program.
                 people_dict = [person.to_dict() for person in directory.people_list]
                 JSON_handler.write_to_file(people_dict)       
                 break
+
             case _:
+                # Handle invalid inputs.
                 print("Invalid option")
                 break
 
+# Function to display a menu with given options.
 def display_menu(options):
     for index, option in enumerate(options):
         print(f"{index + 1}. {option}")
 
+# Function to update directory and calendar with data from JSON.
 def update_all_info(directory: Directory, calendar: Calendar):
     json_data = JSON_handler.read_file()
-    person = [Person.from_dict(person_data) for person_data in json_data]
-    for p in person:
-        directory.add_person(p)
-        if p.meeting_date != "TBD":
-            p.meeting_time = JSON_handler.deserialize_times(p.meeting_time)
-            p.meeting_date = JSON_handler.deserialize_dates(p.meeting_date)
+
+    # Make a list of people objects from the json data.
+    person_data_list = [Person.from_dict(person_data) for person_data in json_data] # Chat GPT showed me how to do this.
+
+    # Iterate through the people and add them to the directory. 
+    for person in person_data_list:
+        directory.add_person(person)
+
+        # Recreate any date and time objects.
+        if person.meeting_date != "TBD":
+            person.meeting_time = JSON_handler.deserialize_times(person.meeting_time)
+            person.meeting_date = JSON_handler.deserialize_dates(person.meeting_date)
+
+            # Recreate the person's meeting if they have one and add it to the calendar.
             calendar.add_meeting_to_thursday(
                 Meeting(
-                    p, 
-                    p.meeting_time, 
-                    p.meeting_date))
+                    person, 
+                    person.meeting_time, 
+                    person.meeting_date))
 
-
+# Run the main function if the script is executed directly.
 if __name__ == "__main__":
     main()
