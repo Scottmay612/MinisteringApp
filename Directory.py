@@ -45,7 +45,10 @@ class Directory():
     # Marks a specific persons meeting as finished.
     def mark_meeting_finished(self):
         print("Which person finished?")
+        print("(options)")
+        print()
         self.show_unfinished()
+        print()
         finished_person = input("Enter their name: ")
         finished_person_obj = self.find_person(finished_person)
         finished_person_obj.is_finished = True
